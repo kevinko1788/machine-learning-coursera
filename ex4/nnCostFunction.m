@@ -111,28 +111,13 @@ for i = 1:m
 end;
 
 %update new Delta Matrix
-Theta1_grad = (1/m) * Theta1_grad;
 Theta2_grad = (1/m) * Theta2_grad;
+Theta1_grad = (1/m) * Theta1_grad;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%regularization
+Theta2_grad(:,2:end) = Theta2_grad(:,2:end)+((lambda/m)*(Theta2(:,2:end)));
+Theta1_grad(:,2:end) = Theta1_grad(:,2:end)+((lambda/m)*(Theta1(:,2:end)));
 
 
 % -------------------------------------------------------------
