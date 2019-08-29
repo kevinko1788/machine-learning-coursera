@@ -34,7 +34,6 @@ J = J+reg;
 %gradiant with regularization. theta(1) = 0
 grad = (1/m)*(X'*(h-y))+(lambda/m)*[0;theta(2:end)];
 
-whos
 % =========================================================================
 
 grad = grad(:);

@@ -21,6 +21,8 @@ m = size(X, 1);
 error_train = zeros(m, 1);
 error_val   = zeros(m, 1);
 
+
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Fill in this function to return training errors in 
 %               error_train and the cross validation errors in error_val. 
@@ -50,10 +52,24 @@ error_val   = zeros(m, 1);
 %           
 %       end
 %
+%Tried vectorized solution but needs improvement
+%need to figure out 1:i
+%theta_train = trainLinearReg(X,y,lambda);
+
+%error_train = (1/(2*m))*((X*theta_train)-y).^2;
+
+%error_val = (1/(2*m))*((Xval(1:m,:)*theta_train)-yval(1:m)).^2;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ---------------------- Sample Solution ----------------------
 
-
+for i = 1:m
+	subx = X(1:i,:);
+	suby = y(1:i);
+	theta = trainLinearReg(subx,suby,lambda);
+	error_train(i) = linearRegCostFunction(subx, suby, theta, 0);
+	error_val(i) = linearRegCostFunction(Xval, yval,theta,0);
+end
 
 
 
