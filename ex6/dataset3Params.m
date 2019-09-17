@@ -28,19 +28,25 @@ params =[0.01,0.03,0.1,0.3,1,3,10,30];
 
 for C_test = params
 	for S_test = params
-		fprintf('C possible value: ');
-		disp(C_test);
-		fprintf('sigma possible value: ');
-		disp(S_test);
 		model = svmTrain(X,y,C_test, @(x1,x2) gaussianKernel(x1,x2,S_test));
 		predictions = svmPredict(model,Xval);
-		err = mean(double(predictions ~= yval))
-		if (err<=min_err)
+		err = mean(double(predictions ~= yval));
+		%fprintf('value: ');
+		%disp(C_test);
+		%disp(S_test);
+		%disp(err);
+		if (err<min_err)
+			%disp('min_err changed \n');
 			C = C_test;
 			sigma = S_test;
-			min_err = err
+			min_err = err;
+		end;
 	end;
 end;
+
+
+%disp(C);
+%disp(sigma);
 
 % =========================================================================
 
